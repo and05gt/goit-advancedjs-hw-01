@@ -1,0 +1,20 @@
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 24px 156px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  width: calc((100% - 48px) / 3);
+  transition: transform 300ms ease-in-out;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+.gallery-image {
+  height: 200px;
+}
