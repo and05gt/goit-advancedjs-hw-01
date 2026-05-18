@@ -1,4 +1,4 @@
-let formData = {
+const formData = {
   email: '',
   message: '',
 };
@@ -13,10 +13,8 @@ form.addEventListener('submit', handleFormSubmit);
 initFormData();
 
 function handleFormInput() {
-  formData = {
-    email: email.value.trim(),
-    message: message.value.trim(),
-  };
+  formData.email = email.value;
+  formData.message = message.value;
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formData));
 }
 
@@ -28,7 +26,7 @@ function initFormData() {
   try {
     const parsedData = JSON.parse(savedData);
 
-    formData = { ...formData, ...parsedData };
+    Object.assign(formData, parsedData);
     email.value = formData.email || '';
     message.value = formData.message || '';
   } catch (error) {
@@ -46,5 +44,6 @@ function handleFormSubmit(e) {
 
   localStorage.removeItem(LOCALSTORAGE_KEY);
   form.reset();
-  formData = { email: '', message: '' };
+  formData.email = '';
+  formData.message = '';
 }
